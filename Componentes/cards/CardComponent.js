@@ -1,21 +1,26 @@
 import React from 'react';
 import {
-  Image, StyleSheet, TouchableOpacity,
+  Image, StyleSheet, Button, TouchableOpacity,
 } from 'react-native';
 import {
-  Card, CardItem, Thumbnail, Text, Icon, Left, Body, Right, View, Button,
+  Card, CardItem, Text, View,
+
 } from 'native-base';
 
 
 const CardComponent = props => (
-  <Card style={styles.card} noShadow transparent>
-    <CardItem cardBody>
-      <Image source={props.image} style={{ height: 120, width: 150, flex: 1 }} />
-    </CardItem>
-    <View style={styles.header_noticia}>
-      <Text titulo_noticia>{props.title}</Text>
-    </View>
-  </Card>
+  <TouchableOpacity onPress={() => { props.navigation.navigate('Detalle', { name: 'Brent' }); }}>
+    <Card style={styles.card} noShadow transparent>
+
+      <CardItem cardBody>
+        <Image source={props.image} style={{ height: 120, width: 150, flex: 1 }} />
+      </CardItem>
+
+      <View style={styles.header_noticia}>
+        <Text titulo_noticia>{props.title}</Text>
+      </View>
+    </Card>
+  </TouchableOpacity>
 
 );
 export default CardComponent;

@@ -7,7 +7,6 @@ import { Provider } from 'react-redux';
 import getTheme from './native-base-theme/components';
 import material from './native-base-theme/variables/material';
 import { RutasPrincipales } from './Componentes/RutasPrincipales';
-// import HeaderPage from './Componentes/header/HeaderPage';
 import store from './Store/Store';
 
 
@@ -19,12 +18,14 @@ export default class App extends React.Component {
     };
   }
 
+
   render() {
     return (
 
       <StyleProvider style={getTheme(material)}>
         <Provider store={store}>
           <Container style={styles.container}>
+
             <RutasPrincipales />
           </Container>
         </Provider>

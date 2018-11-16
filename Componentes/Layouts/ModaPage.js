@@ -7,7 +7,7 @@ import Carrouselomponent from '../carrousel/CarrouselComponent';
 import CardComponent from '../cards/CardComponent';
 
 // create a component
-class CategoryPage extends Component {
+class ModaPage extends Component {
   constructor() {
     super();
     this.state = {
@@ -76,7 +76,7 @@ class CategoryPage extends Component {
       <ScrollView style={styles.container}>
         <View>
           <Text style={styles.titulo}>{categoria}</Text>
-          <Carrouselomponent visible={visible} navigation={this.props.navigation} />
+          <Carrouselomponent />
         </View>
         <View style={styles.articulos}>
           {data && data.length > 0
@@ -129,4 +129,4 @@ const styles = StyleSheet.create({
 });
 
 // make this component available to the app
-export default CategoryPage;
+export default ModaPage;

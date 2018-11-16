@@ -13,6 +13,7 @@ import { connect } from 'react-redux';
 import HeaderPage from '../header/HeaderPage';
 import CategoryPage from './CategoryPage';
 import { actionPruebaUno, actionPruebaDos } from '../../Store/Actions';
+import ModaPage from './ModaPage';
 
 
 // create a component
@@ -62,31 +63,33 @@ class HomePage extends Component {
   }
 
   render() {
-    console.log(this.props.numero);
-    const { data } = this.state;
     return (
       <Container>
         <HeaderPage {...this.props} />
-        <Tabs renderTabBar={() => <ScrollableTab />}>
-          <Tab heading="destacado">
-            <CategoryPage {...this.props} data={data} categoria="Destacado" pruebaUno={this.props.prueba_uno} pruebaDos={this.props.prueba_dos} />
-          </Tab>
-          <Tab heading="deporte">
-            <CategoryPage {...this.props} data={data} categoria="deporte" />
+        <Tabs renderTabBar={() => <ScrollableTab />} tabStyle>
+          <Tab heading="LO NUEVO">
+            <CategoryPage {...this.props} categoria="LO NUEVO" pruebaUno={this.props.prueba_uno} pruebaDos={this.props.prueba_dos} />
           </Tab>
           <Tab heading="salud">
-            <CategoryPage {...this.props} data={data} categoria="salud" />
+            <CategoryPage {...this.props} categoria="salud" />
           </Tab>
           <Tab heading="salud">
-            <CategoryPage {...this.props} data={data} categoria="salud" />
+            <CategoryPage {...this.props} categoria="salud" />
           </Tab>
 
           <Tab heading="salud">
-            <CategoryPage {...this.props} data={data} categoria="salud" />
+            <CategoryPage {...this.props} categoria="salud" />
           </Tab>
+
           <Tab heading="salud">
-            <CategoryPage {...this.props} data={data} categoria="salud" />
+            <CategoryPage {...this.props} categoria="salud" />
           </Tab>
+
+          <Tab heading="salud">
+            <CategoryPage {...this.props} categoria="salud" />
+          </Tab>
+
+
         </Tabs>
       </Container>
     );

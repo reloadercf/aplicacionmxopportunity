@@ -17,14 +17,15 @@ class Carrouselomponent extends Component {
         {
           title: 'LA IMPORTANCIA DE LOS NEGOCIOS ENTRE MEXICO Y ESPAÑA',
           url: 'https://images.pexels.com/photos/6420/metal-easter-eggs-basket.jpg?auto=compress&cs=tinysrgb&h=650&w=940',
+          slug: 'noticia1',
         }, {
           title: 'ESTA ES UNA PREBA DEL FUNCINAMIENTO DEL TITULO',
-
           url: 'https://images.pexels.com/photos/533930/pexels-photo-533930.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+          slug: 'noticia2',
         }, {
           title: 'Title 3',
-
           url: 'https://images.pexels.com/photos/605408/pexels-photo-605408.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+          slug: 'noticia3',
         },
       ],
     };
@@ -50,13 +51,13 @@ class Carrouselomponent extends Component {
       <View style={styles.container}>
 
         <ImageSliderz
-
           dataSource={this.state.dataSource}
           position={this.state.position}
           onPositionChanged={position => this.setState({ position })}
           height={250}
           arrowSize={1}
           scrollEnabled={false}
+          navigation={this.props.navigation}
 
 
         />
