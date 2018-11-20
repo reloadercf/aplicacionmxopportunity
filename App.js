@@ -25,7 +25,6 @@ export default class App extends React.Component {
       <StyleProvider style={getTheme(material)}>
         <Provider store={store}>
           <Container style={styles.container}>
-
             <RutasPrincipales />
           </Container>
         </Provider>

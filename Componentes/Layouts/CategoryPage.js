@@ -5,6 +5,7 @@ import {
 } from 'react-native';
 import Carrouselomponent from '../carrousel/CarrouselComponent';
 import CardComponent from '../cards/CardComponent';
+import CardList from '../cards/CardList';
 
 // create a component
 class CategoryPage extends Component {
@@ -68,28 +69,22 @@ class CategoryPage extends Component {
       pruebaDos, categoria,
     } = this.props;
 
-
     const { data, visible } = this.state;
-
-
     return (
       <ScrollView style={styles.container}>
         <View>
           <Text style={styles.titulo}>{categoria}</Text>
           <Carrouselomponent visible={visible} navigation={this.props.navigation} />
         </View>
-        <View style={styles.articulos}>
+        {/* <View style={styles.articulos}>
           {data && data.length > 0
             ? data.map((c, key) => (
-
               <CardComponent key={key} {...c} pruebaDos={pruebaDos} onOpen={this.onOpen} onCancel={this.onCancel} visible={visible} navigation={this.props.navigation} />
-
             ))
-
             : <div>¡¡No hay datos disponibles!!</div>
-
           }
-        </View>
+        </View> */}
+        <CardList data={data} navigation={this.props.navigation} />
       </ScrollView>
     );
   }
@@ -117,13 +112,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     flexWrap: 'wrap',
   },
-  // card: {
-  //   marginVertical: 10,
-  //   display: 'flex',
-  //   flexDirection: 'row',
-  //   justifyContent: 'center',
-  //   alignItems: 'center',
-  // },
 
 
 });

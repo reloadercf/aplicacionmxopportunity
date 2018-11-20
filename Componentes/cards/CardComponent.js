@@ -11,11 +11,14 @@ import {
 const CardComponent = props => (
   <TouchableOpacity onPress={() => { props.navigation.navigate('Detalle', { name: 'Brent' }); }}>
     <Card style={styles.card} noShadow transparent>
-
       <CardItem cardBody>
-        <Image source={props.image} style={{ height: 120, width: 150, flex: 1 }} />
+        <Image
+          source={props.image}
+          style={{
+            height: 120, width: 150, flex: 1,
+          }}
+        />
       </CardItem>
-
       <View style={styles.header_noticia}>
         <Text titulo_noticia>{props.title}</Text>
       </View>
@@ -34,6 +37,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     width: 170,
+    padding: 0,
+
   },
   header_noticia: {
     width: 170,

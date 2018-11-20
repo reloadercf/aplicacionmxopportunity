@@ -14,6 +14,7 @@ import HeaderPage from '../header/HeaderPage';
 import CategoryPage from './CategoryPage';
 import { actionPruebaUno, actionPruebaDos } from '../../Store/Actions';
 import ModaPage from './ModaPage';
+import Share from '../share/Share';
 
 
 // create a component
@@ -66,6 +67,7 @@ class HomePage extends Component {
     return (
       <Container>
         <HeaderPage {...this.props} />
+        {/* <Share /> */}
         <Tabs renderTabBar={() => <ScrollableTab />} tabStyle>
           <Tab heading="LO NUEVO">
             <CategoryPage {...this.props} categoria="LO NUEVO" pruebaUno={this.props.prueba_uno} pruebaDos={this.props.prueba_dos} />
