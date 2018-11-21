@@ -1,4 +1,4 @@
-import { createStore, combineReducers } from 'redux';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
 import CONSTANTES from './Const';
 
 
@@ -13,10 +13,13 @@ const reducerPrueba = (state = [0], action) => {
   }
 };
 
+const miMiddleware = store => next => (action) => {
+  console.log('Se ejecuta el middleware');
+};
 const reducers = combineReducers({
   reducerPrueba,
 });
-const store = createStore(reducers);
+const store = createStore(reducers, applyMiddleware(miMiddleware));
 
 
 export default store;

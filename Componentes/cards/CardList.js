@@ -4,7 +4,7 @@ import { View, Text, StyleSheet } from 'react-native';
 import CardComponent from './CardComponent';
 
 const CardList = (props) => {
-  console.log('hola');
+  console.log(props);
   return (
     <View style={styles.articulos}>
       {props.data && props.data.length > 0

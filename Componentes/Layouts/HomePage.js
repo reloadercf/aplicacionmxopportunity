@@ -13,8 +13,6 @@ import { connect } from 'react-redux';
 import HeaderPage from '../header/HeaderPage';
 import CategoryPage from './CategoryPage';
 import { actionPruebaUno, actionPruebaDos } from '../../Store/Actions';
-import ModaPage from './ModaPage';
-import Share from '../share/Share';
 
 
 // create a component
@@ -63,36 +61,32 @@ class HomePage extends Component {
     };
   }
 
+
   render() {
+    console.log(this.props);
     return (
       <Container>
         <HeaderPage {...this.props} />
-        {/* <Share /> */}
-        <Tabs renderTabBar={() => <ScrollableTab />} tabStyle>
-          <Tab heading="LO NUEVO">
-            <CategoryPage {...this.props} categoria="LO NUEVO" pruebaUno={this.props.prueba_uno} pruebaDos={this.props.prueba_dos} />
+        <Tabs initialPage={0} renderTabBar={() => <ScrollableTab />} tabStyle>
+          <Tab heading="LO ULTIMO">
+            <CategoryPage {...this.props} categoria="LO ULTIMO" pruebaUno={this.props.prueba_uno} pruebaDos={this.props.prueba_dos} />
           </Tab>
-          <Tab heading="salud">
-            <CategoryPage {...this.props} categoria="salud" />
+          <Tab heading="MODA">
+            <CategoryPage {...this.props} categoria="MODA" pruebaUno={this.props.prueba_uno} pruebaDos={this.props.prueba_dos} />
           </Tab>
-          <Tab heading="salud">
-            <CategoryPage {...this.props} categoria="salud" />
-          </Tab>
-
-          <Tab heading="salud">
-            <CategoryPage {...this.props} categoria="salud" />
+          <Tab heading="DEPORTES">
+            <CategoryPage {...this.props} categoria="LDEPORTES" pruebaUno={this.props.prueba_uno} pruebaDos={this.props.prueba_dos} />
           </Tab>
 
-          <Tab heading="salud">
-            <CategoryPage {...this.props} categoria="salud" />
+          <Tab heading="CINE">
+            <CategoryPage {...this.props} categoria="CINE" pruebaUno={this.props.prueba_uno} pruebaDos={this.props.prueba_dos} />
           </Tab>
 
-          <Tab heading="salud">
-            <CategoryPage {...this.props} categoria="salud" />
+          <Tab heading="SALUD">
+            <CategoryPage {...this.props} categoria="SALUD" pruebaUno={this.props.prueba_uno} pruebaDos={this.props.prueba_dos} />
           </Tab>
-
-
         </Tabs>
+
       </Container>
     );
   }

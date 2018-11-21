@@ -1,17 +1,26 @@
 // import liraries
 import React, { Component } from 'react';
+import { StyleSheet } from 'react-native';
 import {
-  View, Text, StyleSheet, ScrollView, Button,
-} from 'react-native';
-import Carrouselomponent from '../carrousel/CarrouselComponent';
-import CardComponent from '../cards/CardComponent';
+  Container,
+  Tabs,
+  Tab,
+  ScrollableTab,
+  Text,
+  Button,
+} from 'native-base';
+import { connect } from 'react-redux';
+import HeaderPage from '../header/HeaderPage';
+import CategoryPage from './CategoryPage';
+import { actionPruebaUno, actionPruebaDos } from '../../Store/Actions';
+import CardList from '../cards/CardList';
+
 
 // create a component
 class ModaPage extends Component {
   constructor() {
     super();
     this.state = {
-      visible: false,
       data: [
         {
           title: 'LA NEGOCIACION ES IMPORTANTE EN NUESTRAS VIDAS',
@@ -53,80 +62,63 @@ class ModaPage extends Component {
     };
   }
 
-  onCancel() {
-    console.log('CANCEL');
-    this.setState({ visible: false });
-  }
-
-  onOpen() {
-    console.log('OPEN');
-    this.setState({ visible: true });
-  }
 
   render() {
-    const {
-      pruebaDos, categoria,
-    } = this.props;
-
-
-    const { data, visible } = this.state;
-
-
+    console.log(this.props);
     return (
-      <ScrollView style={styles.container}>
-        <View>
-          <Text style={styles.titulo}>{categoria}</Text>
-          <Carrouselomponent />
-        </View>
-        <View style={styles.articulos}>
-          {data && data.length > 0
-            ? data.map((c, key) => (
+      <Container>
+        <HeaderPage {...this.props} />
+        <Tabs initialPage={1} renderTabBar={() => <ScrollableTab />} tabStyle>
+          <Tab heading="LO ULTIMO">
+            <CategoryPage {...this.props} categoria="LO ULTIMO" pruebaUno={this.props.prueba_uno} pruebaDos={this.props.prueba_dos} />
+          </Tab>
+          <Tab heading="MODA">
+            <CategoryPage {...this.props} categoria="LO ULTIMO" pruebaUno={this.props.prueba_uno} pruebaDos={this.props.prueba_dos} />
+          </Tab>
+          <Tab heading="salud">
+            <CategoryPage {...this.props} categoria="salud" />
+          </Tab>
 
-              <CardComponent key={key} {...c} pruebaDos={pruebaDos} onOpen={this.onOpen} onCancel={this.onCancel} visible={visible} navigation={this.props.navigation} />
+          <Tab heading="salud">
+            <CategoryPage {...this.props} categoria="salud" />
+          </Tab>
 
-            ))
+          <Tab heading="salud">
+            <CategoryPage {...this.props} categoria="salud" />
+          </Tab>
 
-            : <div>¡¡No hay datos disponibles!!</div>
+          <Tab heading="salud">
+            <CardList data={this.state.data} navigation={this.props.navigation} />
 
-          }
-        </View>
-      </ScrollView>
+          </Tab>
+
+
+        </Tabs>
+      </Container>
     );
   }
 }
 
-
 // define your styles
 const styles = StyleSheet.create({
-  container: {
-    display: 'flex',
-    flexDirection: 'column',
-    backgroundColor: '#ffff',
+  tab_categoria: {
+    backgroundColor: '#222831',
   },
-  titulo: {
-    fontSize: 20,
-    paddingVertical: 20,
-    textAlign: 'center',
-    fontWeight: 'bold',
-    color: '#252a34',
-  },
-  articulos: {
-    flex: 1,
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    flexWrap: 'wrap',
-  },
-  // card: {
-  //   marginVertical: 10,
-  //   display: 'flex',
-  //   flexDirection: 'row',
-  //   justifyContent: 'center',
-  //   alignItems: 'center',
-  // },
-
-
 });
 
-// make this component available to the app
-export default ModaPage;
+const mapStateToProps = state => ({
+  numero: state.reducerPrueba,
+});
+
+
+const mapDispatchToProps = dispatch => ({
+  prueba_uno: () => {
+    dispatch({ type: 'PRUEBA_UNO' });
+  },
+  prueba_dos: () => {
+    dispatch({ type: 'PRUEBA_DOS' });
+  },
+});
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(ModaPage);

@@ -25,50 +25,54 @@ class DetailPage extends Component {
     const { data } = this.state;
     console.log(this.props.navigation.state.params.name);
     return (
-      <ScrollView style={styles.container}>
+      <View>
         <HeaderPage {...this.props} data={data} />
-        {/* <Share /> */}
-        <View style={styles.viewImage}>
-          <Image
-            source={data.image}
-            style={{
-              width: 360, resizeMode: 'contain',
-            }}
-          />
-        </View>
-        <View>
+        <ScrollView style={styles.container}>
 
-          <Text style={styles.titulo}>{data.title}</Text>
-          <Text style={styles.descripcion}>
+          {/* <Share /> */}
+          <View style={styles.viewImage}>
+            <Image
+              source={data.image}
+              style={{
+                width: 360, resizeMode: 'contain',
+              }}
+            />
+          </View>
+          <View>
+
+            <Text style={styles.titulo}>{data.title}</Text>
+            <Text style={styles.descripcion}>
             Descripcion de la imagen de como debe funcionar el detail en la
             app  Descripcion de la imagen de como debe funcionar el detail en la
             app
-          </Text>
-        </View>
+            </Text>
+          </View>
 
-        <View style={styles.viewImage}>
-          <Image
-            source={data.image}
-            style={{
-              width: 350, resizeMode: 'contain',
-            }}
-          />
+          <View style={styles.viewImage}>
+            <Image
+              source={data.image}
+              style={{
+                width: 350, resizeMode: 'contain',
+              }}
+            />
 
-          <Text style={styles.descripcion}>
+            <Text style={styles.descripcion}>
             Descripcion de la imagen de como debe funcionar el detail en la
             app  Descripcion de la imagen de como debe funcionar el detail en la
             app
-          </Text>
+            </Text>
 
-        </View>
+          </View>
 
-        <View style={styles.publicidad}>
-          <Image source={data.image} style={{ width: 170, height: 120, resizeMode: 'contain' }} />
-          <Image source={data.image} style={{ width: 170, height: 120, resizeMode: 'contain' }} />
-        </View>
+          <View style={styles.publicidad}>
+            <Image source={data.image} style={{ width: 170, height: 120, resizeMode: 'contain' }} />
+            <Image source={data.image} style={{ width: 170, height: 120, resizeMode: 'contain' }} />
+          </View>
 
 
-      </ScrollView>
+        </ScrollView>
+      </View>
+
     );
   }
 }

@@ -1,9 +1,9 @@
-import { createDrawerNavigator } from 'react-navigation';
+import { createDrawerNavigator, StackActions } from 'react-navigation';
 import Inicio from './Layouts/HomePage';
 import DrawerNavigation from './drawer/DrawerNavigation';
 import DirectorioPage from './Layouts/DirectorioPage';
 import ModaPage from './Layouts/ModaPage';
-import { StackHome } from './StackHome';
+import { StackHome, StackModa } from './StackHome';
 
 
 const RutasPrincipales = createDrawerNavigator({
@@ -15,8 +15,16 @@ const RutasPrincipales = createDrawerNavigator({
   },
   MODA: {
     screen: StackHome,
+
     navigationOptions: () => ({
       title: 'MODA',
+    }),
+  },
+  HOLA: {
+    screen: StackHome,
+    params: { categoria: 'DINERO' },
+    navigationOptions: () => ({
+      title: 'DINERO',
     }),
   },
   DIRECTORIO: {
@@ -24,8 +32,9 @@ const RutasPrincipales = createDrawerNavigator({
   },
 
 },
+
 {
-  initialRouteName: 'INICIO',
+
   contentComponent: DrawerNavigation,
   contentOptions: {
     activeTintColor: '#1d2323',

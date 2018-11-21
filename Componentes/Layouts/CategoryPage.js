@@ -70,20 +70,13 @@ class CategoryPage extends Component {
     } = this.props;
 
     const { data, visible } = this.state;
+    console.log(data);
     return (
       <ScrollView style={styles.container}>
         <View>
           <Text style={styles.titulo}>{categoria}</Text>
-          <Carrouselomponent visible={visible} navigation={this.props.navigation} />
+          { categoria === 'LO ULTIMO' ? <Carrouselomponent visible={visible} navigation={this.props.navigation} /> : null}
         </View>
-        {/* <View style={styles.articulos}>
-          {data && data.length > 0
-            ? data.map((c, key) => (
-              <CardComponent key={key} {...c} pruebaDos={pruebaDos} onOpen={this.onOpen} onCancel={this.onCancel} visible={visible} navigation={this.props.navigation} />
-            ))
-            : <div>¡¡No hay datos disponibles!!</div>
-          }
-        </View> */}
         <CardList data={data} navigation={this.props.navigation} />
       </ScrollView>
     );
