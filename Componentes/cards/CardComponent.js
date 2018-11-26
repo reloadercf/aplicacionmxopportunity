@@ -9,18 +9,18 @@ import {
 
 
 const CardComponent = props => (
-  <TouchableOpacity onPress={() => { props.navigation.navigate('Detalle', { name: 'Brent' }); }}>
+  <TouchableOpacity onPress={() => { props.navigation.navigate('Detalle', { slug: props.slug }); }}>
     <Card style={styles.card} noShadow transparent>
       <CardItem cardBody>
         <Image
-          source={props.image}
+          source={{ uri: props.imagenportada }}
           style={{
             height: 120, width: 150, flex: 1,
           }}
         />
       </CardItem>
       <View style={styles.header_noticia}>
-        <Text titulo_noticia>{props.title}</Text>
+        <Text titulo_noticia>{props.titulo}</Text>
       </View>
     </Card>
   </TouchableOpacity>

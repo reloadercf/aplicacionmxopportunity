@@ -3,9 +3,10 @@ import React, { Component } from 'react';
 import {
   View, Text, StyleSheet, ScrollView, Button,
 } from 'react-native';
+import { connect } from 'react-redux';
 import Carrouselomponent from '../carrousel/CarrouselComponent';
-import CardComponent from '../cards/CardComponent';
 import CardList from '../cards/CardList';
+import { actionGetArticulosCategoria, actionCargarPublicacionesStore } from '../../Store/Actions';
 
 // create a component
 class CategoryPage extends Component {
@@ -13,71 +14,39 @@ class CategoryPage extends Component {
     super();
     this.state = {
       visible: false,
-      data: [
-        {
-          title: 'LA NEGOCIACION ES IMPORTANTE EN NUESTRAS VIDAS',
-          text: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard',
-          image: require('../../assets/images/noticias/1.jpeg'),
-        },
-        {
-          title: 'LA NEGOCIACION ES IMPORTANTE EN NUESTRAS VIDAS',
-          text: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard',
-          image: require('../../assets/images/noticias/2.jpeg'),
-        },
-        {
-          title: 'Lorem Ipsum',
-          text: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard',
-          image: require('../../assets/images/noticias/3.jpeg'),
-        },
-        {
-          title: 'Lorem Ipsum',
-          text: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard',
-          image: require('../../assets/images/noticias/1.jpeg'),
-        },
-        {
-          title: 'Lorem Ipsum',
-          text: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard',
-          image: require('../../assets/images/noticias/2.jpeg'),
-        },
-        {
-          title: 'Lorem Ipsum',
-          text: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard',
-          image: require('../../assets/images/noticias/3.jpeg'),
-        },
-        {
-          title: 'Lorem Ipsum',
-          text: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard',
-          image: require('../../assets/images/noticias/2.jpeg'),
-        },
-
-      ],
     };
   }
 
+
+  componentDidMount() {
+    this.props.get_categoria(this.props.categoria);
+    this.props.get_articulos();
+  }
+
   onCancel() {
-    console.log('CANCEL');
     this.setState({ visible: false });
   }
 
   onOpen() {
-    console.log('OPEN');
     this.setState({ visible: true });
   }
 
+
   render() {
     const {
-      pruebaDos, categoria,
+      categoria, articulos,
     } = this.props;
 
-    const { data, visible } = this.state;
-    console.log(data);
+    // const filteredProducts = articulos.articulos.filter((p) => p.categoria.nombrecategoria === this.props.categoria);
+    // console.log(this.props.articulos);
+    const { visible } = this.state;
     return (
       <ScrollView style={styles.container}>
         <View>
           <Text style={styles.titulo}>{categoria}</Text>
           { categoria === 'LO ULTIMO' ? <Carrouselomponent visible={visible} navigation={this.props.navigation} /> : null}
         </View>
-        <CardList data={data} navigation={this.props.navigation} />
+        <CardList data={articulos.articulos} navigation={this.props.navigation} />
       </ScrollView>
     );
   }
@@ -109,5 +78,17 @@ const styles = StyleSheet.create({
 
 });
 
-// make this component available to the app
-export default CategoryPage;
+
+const mapStateToProps = state => ({
+  articulos: state.reducerArticulos,
+});
+
+const mapDispatchToProps = dispatch => ({
+  get_categoria: (categoria) => {
+    dispatch(actionGetArticulosCategoria(categoria));
+  },
+  get_articulos: () => {
+    dispatch(actionCargarPublicacionesStore());
+  },
+});
+export default connect(mapStateToProps, mapDispatchToProps)(CategoryPage);

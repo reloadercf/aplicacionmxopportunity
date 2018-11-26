@@ -3,70 +3,69 @@ import React, { Component } from 'react';
 import {
   View, Text, StyleSheet, ScrollView, Image,
 } from 'react-native';
+import { connect } from 'react-redux';
 import HeaderPage from '../header/HeaderPage';
 import Share from '../share/Share';
+import { actionGetArticuloSlug, actionGetArticulo } from '../../Store/Actions';
 
 // create a component
 class DetailPage extends Component {
   constructor() {
     super();
     this.state = {
-      data:
-        {
-          title: 'LA NEGOCIACION ES IMPORTANTE EN NUESTRAS VIDAS',
-          text: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard',
-          image: require('../../assets/images/noticias/1.jpeg'),
-        },
+
 
     };
   }
 
+  componentDidMount() {
+    this.props.get_articulo_slug(this.props.navigation.state.params.slug);
+    this.props.get_articulo();
+  }
+
   render() {
     const { data } = this.state;
-    console.log(this.props.navigation.state.params.name);
+    const articulo = this.props.articulo.articulos;
+    console.log(this.props.navigation.state.params.slug);
+    console.log(articulo);
     return (
       <View>
-        <HeaderPage {...this.props} data={data} />
-        <ScrollView style={styles.container}>
 
+        <ScrollView style={styles.container}>
+          <HeaderPage {...this.props} data={data} />
           {/* <Share /> */}
           <View style={styles.viewImage}>
             <Image
-              source={data.image}
+              source={{ uri: articulo[0].imagenportada }}
               style={{
-                width: 360, resizeMode: 'contain',
+                width: 400, height: 400, resizeMode: 'contain',
               }}
             />
           </View>
           <View>
 
-            <Text style={styles.titulo}>{data.title}</Text>
+            <Text style={styles.titulo}>{articulo[0].titulo}</Text>
             <Text style={styles.descripcion}>
-            Descripcion de la imagen de como debe funcionar el detail en la
-            app  Descripcion de la imagen de como debe funcionar el detail en la
-            app
+              {articulo[0].cuerpo}
             </Text>
           </View>
 
           <View style={styles.viewImage}>
             <Image
-              source={data.image}
+              source={{ uri: articulo[0].imagenportada }}
               style={{
-                width: 350, resizeMode: 'contain',
+                width: 400, height: 400, resizeMode: 'contain',
               }}
             />
-
             <Text style={styles.descripcion}>
-            Descripcion de la imagen de como debe funcionar el detail en la
-            app  Descripcion de la imagen de como debe funcionar el detail en la
-            app
+              {articulo[0].cuerpo}
             </Text>
 
           </View>
 
           <View style={styles.publicidad}>
-            <Image source={data.image} style={{ width: 170, height: 120, resizeMode: 'contain' }} />
-            <Image source={data.image} style={{ width: 170, height: 120, resizeMode: 'contain' }} />
+            <Image source={{ uri: articulo[0].publicidad1 }} style={{ width: 170, height: 170, resizeMode: 'contain' }} />
+            <Image source={{ uri: articulo[0].publicidad2 }} style={{ width: 170, height: 170, resizeMode: 'contain' }} />
           </View>
 
 
@@ -99,7 +98,7 @@ const styles = StyleSheet.create({
     padding: 5,
   },
   publicidad: {
-    marginTop: 20,
+    marginVertical: 20,
     flex: 1,
     display: 'flex',
     flexDirection: 'row',
@@ -115,5 +114,17 @@ const styles = StyleSheet.create({
   },
 });
 
-// make this component available to the app
-export default DetailPage;
+
+const mapStateToProps = state => ({
+  articulo: state.reducerArticulos,
+});
+
+const mapDispatchToProps = dispatch => ({
+  get_articulo_slug: (slug) => {
+    dispatch(actionGetArticuloSlug(slug));
+  },
+  get_articulo: () => {
+    dispatch(actionGetArticulo());
+  },
+});
+export default connect(mapStateToProps, mapDispatchToProps)(DetailPage);

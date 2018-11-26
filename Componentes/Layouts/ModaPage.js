@@ -21,44 +21,7 @@ class ModaPage extends Component {
   constructor() {
     super();
     this.state = {
-      data: [
-        {
-          title: 'LA NEGOCIACION ES IMPORTANTE EN NUESTRAS VIDAS',
-          text: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard',
-          image: require('../../assets/images/noticias/1.jpeg'),
-        },
-        {
-          title: 'LA NEGOCIACION ES IMPORTANTE EN NUESTRAS VIDAS',
-          text: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard',
-          image: require('../../assets/images/noticias/2.jpeg'),
-        },
-        {
-          title: 'Lorem Ipsum',
-          text: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard',
-          image: require('../../assets/images/noticias/3.jpeg'),
-        },
-        {
-          title: 'Lorem Ipsum',
-          text: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard',
-          image: require('../../assets/images/noticias/1.jpeg'),
-        },
-        {
-          title: 'Lorem Ipsum',
-          text: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard',
-          image: require('../../assets/images/noticias/2.jpeg'),
-        },
-        {
-          title: 'Lorem Ipsum',
-          text: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard',
-          image: require('../../assets/images/noticias/3.jpeg'),
-        },
-        {
-          title: 'Lorem Ipsum',
-          text: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard',
-          image: require('../../assets/images/noticias/2.jpeg'),
-        },
 
-      ],
     };
   }
 
@@ -68,32 +31,7 @@ class ModaPage extends Component {
     return (
       <Container>
         <HeaderPage {...this.props} />
-        <Tabs initialPage={1} renderTabBar={() => <ScrollableTab />} tabStyle>
-          <Tab heading="LO ULTIMO">
-            <CategoryPage {...this.props} categoria="LO ULTIMO" pruebaUno={this.props.prueba_uno} pruebaDos={this.props.prueba_dos} />
-          </Tab>
-          <Tab heading="MODA">
-            <CategoryPage {...this.props} categoria="LO ULTIMO" pruebaUno={this.props.prueba_uno} pruebaDos={this.props.prueba_dos} />
-          </Tab>
-          <Tab heading="salud">
-            <CategoryPage {...this.props} categoria="salud" />
-          </Tab>
-
-          <Tab heading="salud">
-            <CategoryPage {...this.props} categoria="salud" />
-          </Tab>
-
-          <Tab heading="salud">
-            <CategoryPage {...this.props} categoria="salud" />
-          </Tab>
-
-          <Tab heading="salud">
-            <CardList data={this.state.data} navigation={this.props.navigation} />
-
-          </Tab>
-
-
-        </Tabs>
+        <CategoryPage {...this.props} categoria="MODA" />
       </Container>
     );
   }

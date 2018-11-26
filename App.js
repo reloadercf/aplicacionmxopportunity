@@ -8,8 +8,11 @@ import getTheme from './native-base-theme/components';
 import material from './native-base-theme/variables/material';
 import { RutasPrincipales } from './Componentes/RutasPrincipales';
 import store from './Store/Store';
+import { TabNavigator } from './Componentes/TabNavigator';
+import HeaderPage from './Componentes/header/HeaderPage';
 
 
+console.disableYellowBox = ['Remote debugger'];
 export default class App extends React.Component {
   constructor() {
     super();
@@ -18,17 +21,14 @@ export default class App extends React.Component {
     };
   }
 
-
   render() {
     return (
-
       <StyleProvider style={getTheme(material)}>
         <Provider store={store}>
           <Container style={styles.container}>
-            <RutasPrincipales />
+            <RutasPrincipales hola="hola" />
           </Container>
         </Provider>
-
       </StyleProvider>
     );
   }
