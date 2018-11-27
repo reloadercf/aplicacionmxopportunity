@@ -4,16 +4,16 @@ import {
   Container, StyleProvider,
 } from 'native-base';
 import { Provider } from 'react-redux';
+import { connect } from 'react-redux';
 import getTheme from './native-base-theme/components';
 import material from './native-base-theme/variables/material';
 import { RutasPrincipales } from './Componentes/RutasPrincipales';
 import store from './Store/Store';
-import { TabNavigator } from './Componentes/TabNavigator';
-import HeaderPage from './Componentes/header/HeaderPage';
-
 
 console.disableYellowBox = ['Remote debugger'];
-export default class App extends React.Component {
+
+
+class App extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -21,12 +21,17 @@ export default class App extends React.Component {
     };
   }
 
+  // componentDidMount() {
+  //   this.get_empresa(EMPRESA);
+  //   this.get_categorias(EMPRESA);
+  // }
+
   render() {
     return (
       <StyleProvider style={getTheme(material)}>
         <Provider store={store}>
           <Container style={styles.container}>
-            <RutasPrincipales hola="hola" />
+            <RutasPrincipales />
           </Container>
         </Provider>
       </StyleProvider>
@@ -40,3 +45,5 @@ const styles = StyleSheet.create({
     marginTop: 30,
   },
 });
+
+export default App;

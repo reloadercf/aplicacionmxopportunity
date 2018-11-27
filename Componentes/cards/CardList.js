@@ -1,19 +1,28 @@
 // import liraries
 import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import {
+  View, Text, StyleSheet, Image,
+} from 'react-native';
 import CardComponent from './CardComponent';
 
-const CardList = (props) => (
-    <View style={styles.articulos}>
-      {props.data && props.data.length > 0
-        ? props.data.map((c, key) => (
-          <CardComponent key={key} {...c} navigation={props.navigation} />
-        ))
-        : <Text>¡¡No hay datos disponibles!!</Text>
+
+const CardList = props => (
+  <View style={styles.articulos}>
+    {props.data && props.data.length > 0
+      ? props.data.map((c, key) => (
+        <CardComponent key={key} {...c} navigation={props.navigation} />
+      ))
+
+      : (
+        <View style={styles.refreshContainer}>
+          <Image style={styles.reload} source={require('../../assets/images/refresh.gif')} />
+          <Text>Cargando....</Text>
+        </View>
+      )
           }
 
-    </View>
-  );
+  </View>
+);
 // define your styles
 const styles = StyleSheet.create({
   container: {
@@ -28,6 +37,15 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     flexWrap: 'wrap',
+  },
+  refreshContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  reload: {
+    height: 30,
+    width: 30,
   },
 });
 

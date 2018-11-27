@@ -17,10 +17,10 @@ const reducerPrueba = (state = [0], action) => {
 
 const reducerArticulos = (state = {}, action) => {
   switch (action.type) {
-    case CONSTANTES.AGREGAR_ARTICULOS_STORE:
-      return { ...state, articulos: action.articulos };
     case CONSTANTES.GET_ARTICULOS_CATEGORIA:
       return { ...state, categoria: action.categoria };
+    case CONSTANTES.AGREGAR_ARTICULOS_STORE:
+      return { ...state, articulos: action.articulos };
     case CONSTANTES.GET_ARTICULO_SLUG:
       return { ...state, slug: action.slug };
     case CONSTANTES.GET_ARTICULO:
@@ -31,11 +31,25 @@ const reducerArticulos = (state = {}, action) => {
 };
 
 
+const reducerEmpresa = (state = {}, action) => {
+  switch (action.type) {
+    case CONSTANTES.GET_EMPRESA:
+      return { ...state, empresa: action.varEmpresa };
+    case CONSTANTES.GET_EMPRESA_INFO:
+      return { ...state, empresa: action.empresa };
+    case CONSTANTES.GET_CATEGORIAS_EMPRESA:
+      return { ...state, categorias_empresa: action.categorias };
+    default:
+      return state;
+  }
+};
+
 const sagaMiddleware = createSagaMiddleware();
 
 const reducers = combineReducers({
   reducerPrueba,
   reducerArticulos,
+  reducerEmpresa,
 });
 const store = createStore(reducers, applyMiddleware(sagaMiddleware));
 

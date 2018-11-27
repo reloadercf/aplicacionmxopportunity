@@ -1,24 +1,18 @@
 import { createDrawerNavigator, StackActions } from 'react-navigation';
 import { Dimensions } from 'react-native';
-import Inicio from './Layouts/HomePage';
-import DrawerNavigation from './drawer/DrawerNavigation';
-import DirectorioPage from './Layouts/DirectorioPage';
-import ModaPage from './Layouts/ModaPage';
-import { StackHome } from './StackHome';
-import { StackModa } from './StackModa';
 import HomePage from './Layouts/HomePage';
+import Emocion from './Layouts/HomePage';
+import Salud from './Layouts/HomePage';
+import DrawerNavigation from './drawer/DrawerNavigation';
+// import DirectorioPage from './Layouts/DirectorioPage';
 import DetailPage from './Layouts/DetailPage';
 
 
 const RutasPrincipales = createDrawerNavigator({
   Home: {
     screen: HomePage,
-    navigationOptions: () => ({
-      title: 'LO ULTIMO',
-      header: null,
-
-    }),
   },
+
 
   Detalle: {
     screen: DetailPage,
@@ -51,11 +45,12 @@ const RutasPrincipales = createDrawerNavigator({
       fontSize: 14,
     },
   },
-  drawerWidth: Dimensions.get('window').width - 250,
+  drawerWidth: Dimensions.get('window').width - 200,
   drawerPosition: 'left',
   drawerOpenRoute: 'DrawerOpen',
   drawerCloseRoute: 'DrawerClose',
   drawerToggleRote: 'DrawerToggle',
 });
+
 
 export { RutasPrincipales };
