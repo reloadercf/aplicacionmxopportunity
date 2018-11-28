@@ -23,15 +23,12 @@ class CategoryPage extends Component {
     const {
       categoria, articulos,
     } = this.props;
-
-    // const filteredProducts = articulos.articulos.filter((p) => p.categoria.nombrecategoria === this.props.categoria);
-    console.log(this.props.categoria);
     const { visible } = this.state;
     return (
       <ScrollView style={styles.container}>
         <View>
           <Text style={styles.titulo}>{categoria}</Text>
-          { categoria === 'Bienestar' ? <Carrouselomponent visible={visible} navigation={this.props.navigation} /> : null}
+          { categoria === 'Bienestar' ? <Carrouselomponent visible={visible} navigation={this.props.navigation} data={articulos.articulos} /> : null}
         </View>
 
         <CardList data={articulos.articulos} navigation={this.props.navigation} />

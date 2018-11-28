@@ -5,7 +5,6 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import HeaderPage from '../header/HeaderPage';
-import Share from '../share/Share';
 import { actionGetArticuloSlug, actionGetArticulo } from '../../Store/Actions';
 
 // create a component
@@ -13,63 +12,69 @@ class DetailPage extends Component {
   constructor() {
     super();
     this.state = {
-
-
     };
   }
 
   componentDidMount() {
-    this.props.get_articulo_slug(this.props.navigation.state.params.slug);
-    this.props.get_articulo();
+    this.props.getSlug(this.props.navigation.state.params.slug);
+    this.props.getArticulo();
   }
 
   render() {
     const { data } = this.state;
-    const articulo = this.props.articulo.articulos;
-    console.log(this.props.navigation.state.params.slug);
-    console.log(articulo);
+    const article = this.props.articulo.articulo;
+
     return (
       <View>
+        {article
+          ? (
+            <ScrollView style={styles.container}>
+              <HeaderPage {...this.props} data={data} />
+              <View style={styles.viewImage}>
+                <Image
+                  source={{ uri: article.imagenportada }}
+                  style={{
+                    width: 400, height: 400, resizeMode: 'contain',
+                  }}
+                />
+              </View>
+              <View>
 
-        <ScrollView style={styles.container}>
-          <HeaderPage {...this.props} data={data} />
-          {/* <Share /> */}
-          <View style={styles.viewImage}>
-            <Image
-              source={{ uri: articulo[0].imagenportada }}
-              style={{
-                width: 400, height: 400, resizeMode: 'contain',
-              }}
-            />
-          </View>
-          <View>
+                <Text style={styles.titulo}>{article.titulo}</Text>
+                <Text style={styles.descripcion}>
+                  {article.cuerpo}
+                </Text>
+              </View>
 
-            <Text style={styles.titulo}>{articulo[0].titulo}</Text>
-            <Text style={styles.descripcion}>
-              {articulo[0].cuerpo}
-            </Text>
-          </View>
+              <View style={styles.viewImage}>
+                <Image
+                  source={{ uri: article.imagenportada }}
+                  style={{
+                    width: 400, height: 400, resizeMode: 'contain',
+                  }}
+                />
+                <Text style={styles.descripcion}>
+                  {article.cuerpo}
+                </Text>
 
-          <View style={styles.viewImage}>
-            <Image
-              source={{ uri: articulo[0].imagenportada }}
-              style={{
-                width: 400, height: 400, resizeMode: 'contain',
-              }}
-            />
-            <Text style={styles.descripcion}>
-              {articulo[0].cuerpo}
-            </Text>
+              </View>
 
-          </View>
-
-          <View style={styles.publicidad}>
-            <Image source={{ uri: articulo[0].publicidad1 }} style={{ width: 170, height: 170, resizeMode: 'contain' }} />
-            <Image source={{ uri: articulo[0].publicidad2 }} style={{ width: 170, height: 170, resizeMode: 'contain' }} />
-          </View>
+              <View style={styles.publicidad}>
+                <Image source={{ uri: article.publicidad1 }} style={{ width: 170, height: 170, resizeMode: 'contain' }} />
+                <Image source={{ uri: article.publicidad2 }} style={{ width: 170, height: 170, resizeMode: 'contain' }} />
+              </View>
 
 
-        </ScrollView>
+            </ScrollView>
+          ) : (
+            <View style={styles.refreshContainer}>
+              <Image style={styles.reload} source={require('../../assets/images/refresh.gif')} />
+              <Text>Cargando....</Text>
+            </View>
+          )
+     }
+
+
       </View>
 
     );
@@ -112,19 +117,31 @@ const styles = StyleSheet.create({
     alignItems: 'center',
 
   },
+  refreshContainer: {
+
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  reload: {
+    height: 30,
+    width: 30,
+  },
 });
 
 
 const mapStateToProps = state => ({
   articulo: state.reducerArticulos,
 });
-
 const mapDispatchToProps = dispatch => ({
-  get_articulo_slug: (slug) => {
+  getSlug: (slug) => {
     dispatch(actionGetArticuloSlug(slug));
   },
-  get_articulo: () => {
+  getArticulo: () => {
     dispatch(actionGetArticulo());
   },
 });
+
+
 export default connect(mapStateToProps, mapDispatchToProps)(DetailPage);

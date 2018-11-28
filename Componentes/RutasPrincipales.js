@@ -20,9 +20,6 @@ const RutasPrincipales = createDrawerNavigator({
       header: null,
     }),
   },
-  // DIRECTORIO: {
-  //   screen: DirectorioPage,
-  // },
 
 },
 

@@ -35,7 +35,6 @@ class DrawerNavigation extends Component {
 
 
   render() {
-    console.log(this.props.articulos);
     const { categorias, articulos } = this.props;
     return (
       <SafeAreaView style={{ flex: 1 }}>

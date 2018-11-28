@@ -15,22 +15,24 @@ class Carrouselomponent extends Component {
       interval: null,
       dataSource: [
         {
-          title: 'LA IMPORTANCIA DE LOS NEGOCIOS ENTRE MEXICO Y ESPAÑA',
-          url: 'https://images.pexels.com/photos/6420/metal-easter-eggs-basket.jpg?auto=compress&cs=tinysrgb&h=650&w=940',
-          slug: 'noticia1',
+          titulo: 'Entra para ver tres curiosidades de Gijón',
+          imagen_destacada_uno: 'https://www.mxplanb.xyz/media/media/Salud.jpg',
+          slug: 'la-salud-no-tiene-porque-ser-un-lugar-frio-e-inhospito',
+
         }, {
-          title: 'ESTA ES UNA PREBA DEL FUNCINAMIENTO DEL TITULO',
-          url: 'https://images.pexels.com/photos/533930/pexels-photo-533930.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
-          slug: 'noticia2',
+          titulo: 'ESTA ES UNA PREBA DEL FUNCINAMIENTO DEL TITULO',
+          imagen_destacada_uno: 'https://www.mxplanb.xyz/media/media/huca_portada.jpg',
+          slug: 'mexico-un-destino-competitivo-para-los-negocios',
         }, {
-          title: 'Title 3',
-          url: 'https://images.pexels.com/photos/605408/pexels-photo-605408.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
-          slug: 'noticia3',
+          titulo: 'Title 3',
+          imagen_destacada_uno: 'https://www.mxplanb.xyz/media/media/huca_portada.jpg',
+          slug: 'entra-para-ver-3-curiosidades-de-gijon',
         },
       ],
     };
   }
 
+  // titulo, imagen_destacada_uno
   componentWillMount() {
     this.setState({
       interval: setInterval(() => {
@@ -56,7 +58,7 @@ class Carrouselomponent extends Component {
           onPositionChanged={position => this.setState({ position })}
           height={250}
           arrowSize={1}
-          scrollEnabled={false}
+          scrollEnabled
           navigation={this.props.navigation}
 
 

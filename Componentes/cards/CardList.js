@@ -19,7 +19,7 @@ const CardList = props => (
           <Text>Cargando....</Text>
         </View>
       )
-          }
+     }
 
   </View>
 );

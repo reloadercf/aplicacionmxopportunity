@@ -24,10 +24,9 @@ export const actionCargarPublicacionesStore = articulos => ({
 });
 
 
-export const actionGetArticuloSlug = (articulo, slug) => ({
+export const actionGetArticuloSlug = slug => ({
   type: CONSTANTES.GET_ARTICULO_SLUG,
   slug,
-  articulo,
 });
 
 

@@ -6,7 +6,7 @@ import {
 import { connect } from 'react-redux';
 import HeaderPage from '../header/HeaderPage';
 import CategoryPage from './CategoryPage';
-import { actionCargarPublicacionesStore, actionGetArticulosCategoria } from '../../Store/Actions';
+import { actionCargarPublicacionesStore, actionGetArticulosCategoria, actionGetArticulo } from '../../Store/Actions';
 
 
 // create a component
@@ -14,18 +14,16 @@ class HomePage extends Component {
   constructor() {
     super();
     this.state = {
-
     };
   }
 
   componentDidMount() {
     this.props.navigation.state.params ? this.props.get_categoria(this.props.navigation.state.params.categoria) : this.props.get_categoria('Bienestar');
-
     this.props.get_articulos();
+    this.props.get_articulo();
   }
 
   render() {
-    console.log(this.props);
     const { navigation } = this.props;
     return (
       <Container>
@@ -46,6 +44,9 @@ const mapDispatchToProps = dispatch => ({
   },
   get_articulos: () => {
     dispatch(actionCargarPublicacionesStore());
+  },
+  get_articulo: () => {
+    dispatch(actionGetArticulo());
   },
 });
 

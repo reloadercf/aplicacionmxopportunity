@@ -9,7 +9,7 @@ import {
 
 const URL = 'https://www.mxplanb.xyz';
 
-const ConsultaArticulosCategoria = categoria => fetch(`${URL}/article/articulofiltro/?q=${categoria.categoria}`,
+const ConsultaArticulosCategoria = categoria => fetch(`${URL}/article/articulofiltro/?q=${categoria}`,
   {
     method: 'GET',
 
@@ -19,7 +19,7 @@ const ConsultaArticulosCategoria = categoria => fetch(`${URL}/article/articulofi
 function* generadoraArticulosCategoria() {
   try {
     const categoria = yield select(state => state.reducerArticulos);
-    const articulosCategoria = yield call(ConsultaArticulosCategoria, categoria);
+    const articulosCategoria = yield call(ConsultaArticulosCategoria, categoria.categoria);
     yield put(actionCargarPublicacionesStore(articulosCategoria));
     console.log(categoria);
     console.log(articulosCategoria);
@@ -38,8 +38,8 @@ const ConsultaArticuloSlug = slug => fetch(`${URL}/article/articulofiltro/?slug=
 function* generadoraArticuloSlug() {
   try {
     const slug = yield select(state => state.reducerArticulos);
-    const articlosCategoria = yield call(ConsultaArticuloSlug, slug);
-    yield put(actionGetArticulo(articlosCategoria));
+    const articuloCategoria = yield call(ConsultaArticuloSlug, slug.slug);
+    yield put(actionGetArticulo(articuloCategoria[0]));
   } catch (error) {
     console.log(error);
   }
